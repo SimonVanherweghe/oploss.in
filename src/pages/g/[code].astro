@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import path from "path";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = async () => {
+  const svgs = import.meta.glob("../../svgs/*.svg", { as: "url" });
+
+  const result = [];
+  for (const file in svgs) {
+    const mod = await svgs[file]();
+    const code = path.basename(file, ".svg");
+    result.push({
+      params: { code },
+      props: { svg: mod, code },
+    });
+  }
+  return result;
+};
+
+const { svg, code } = Astro.props;
+---
+
+<BaseLayout>
+  <h2>Oplossing {code}</h2>
+  <Image src={svg} alt="oplossing" width="200" height="90" />
+</BaseLayout>
+
+<style>
+  img {
+    max-inline-size: 100%;
+    block-size: auto;
+    width: 100%;
+    display: block;
+  }
+</style>
