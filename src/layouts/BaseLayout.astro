@@ -2,18 +2,43 @@
 
 ---
 
+<style is:global>
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  footer {
+    border-top: solid 1px var(--muted-border-color);
+    text-align: right;
+  }
+</style>
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
     <title>Oploss.in/g</title>
   </head>
   <body>
     <main class="container">
       <slot />
     </main>
+    <footer class="container">
+      <small>
+        <a href="https://donebysimon.be">Donebysimon</a>
+      </small>
+    </footer>
   </body>
 </html>
